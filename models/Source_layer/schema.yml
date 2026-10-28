@@ -1,0 +1,69 @@
+version: 2
+
+models:
+
+  - name: CUSTOMERS
+    columns:
+
+      - name: CUSTOMER_ID
+        data_tests:
+          - unique
+          - not_null
+
+      - name: CUSTOMER_TYPE
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Individual', 'Premium']
+
+
+  - name: ACCOUNTS
+    columns:
+
+      - name: ACCOUNT_ID
+        data_tests:
+          - unique
+          - not_null
+
+      - name: CUSTOMER_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('CUSTOMERS')
+                field: CUSTOMER_ID
+
+      - name: ACCOUNT_STATUS
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Active', 'Inactive', 'Blocked']
+
+
+  - name: TRANSACTIONS
+    columns:
+
+      - name: TRANSACTION_ID
+        data_tests:
+          - unique
+          - not_null
+
+      - name: ACCOUNT_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('ACCOUNTS')
+                field: ACCOUNT_ID
+
+      - name: TRANSACTION_TYPE
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['DEBIT', 'CREDIT']
+
+      - name: STATUS
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['SUCCESS', 'FAILED']

@@ -1,0 +1,9 @@
+sources:
+  - name: raw
+    database: TEST_DBT
+    schema: RAW
+
+    tables:
+      - name: CUSTOMERS
+      - name: ACCOUNTS
+      - name: TRANSACTIONS
