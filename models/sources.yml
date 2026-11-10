@@ -1,9 +1,9 @@
 version: 2
 
 sources:
-  - name: raw
-    database: SNOW_DBT
+  - name: banking_source
+    database: test_ey
     schema: RAW
     tables:
-      - name: customers
+      - name: account
       - name: transactions

@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: banking_source
+    database: YOUR_DATABASE_NAME
+    schema: YOUR_SCHEMA_NAME
+
+    tables:
+      - name: account
+        columns:
+          - name: cust_id
+            tests:
+              - not_null
+              - unique
+
+          - name: name
+
+          - name: balance
+
+          - name: open_date
+            tests:
+              - not_null
+
+      - name: transaction
+        columns:
+          - name: txn_id
+            tests:
+              - not_null
+              - unique
+
+          - name: txn_amount
+
+          - name: customer_id
+            tests:
+              - not_null
+
+          - name: txn_status
+
+          - name: posting_date
+            tests:
+              - not_null
